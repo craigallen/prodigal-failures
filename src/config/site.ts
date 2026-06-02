@@ -16,11 +16,11 @@ export const siteConfig = {
   name: "Prodigal Failures",
 
   /** One-line tagline shown under the name on the home page. */
-  tagline: "Honest conversations about the lessons hiding inside our worst ideas.",
+  tagline: "Unpacking the faith that raised us — one episode at a time",
 
   /** Longer description used for SEO / metadata. */
   description:
-    "Prodigal Failures is a podcast about the missteps, dead ends, and glorious flops that taught us more than any success ever could.",
+    "Prodigal Failures is an honest, funny podcast about growing up evangelical, deconstructing faith, and who we became after we left..",
 
   /**
    * The podcast RSS feed URL. Episodes (titles, descriptions, artwork, dates,
@@ -38,7 +38,7 @@ export const siteConfig = {
   platforms: [
     { name: "Apple Podcasts", href: "https://podcasts.apple.com/" },
     { name: "Spotify", href: "https://open.spotify.com/" },
-    { name: "YouTube", href: "https://youtube.com/" },
+    { name: "YouTube", href: "https://youtube.com/@prodigalfailures" },
     { name: "RSS.com", href: "https://media.rss.com/prodigal-failures/feed.xml" },
   ],
 } as const;
@@ -51,22 +51,21 @@ export const siteConfig = {
 
 export const hosts = [
   {
-    name: "Craig",
-    image: "/hosts/craig.svg",
-    bio:
-      "Craig is one half of Prodigal Failures. This is placeholder bio text — " +
-      "replace it with Craig's real introduction. A sentence or two about his " +
-      "background, what he brings to the show, and the kind of failures he's " +
-      "most qualified to talk about goes a long way here.",
-  },
-  {
     name: "Andy",
     image: "/hosts/andy.svg",
     bio:
-      "Andy is the other half of Prodigal Failures. This is placeholder bio " +
+      "Andy is one half of Prodigal Failures. This is placeholder bio " +
       "text — replace it with Andy's real introduction. Add a couple of " +
       "sentences about who he is, why he co-hosts the show, and his particular " +
       "brand of cautionary tale.",
+  },
+  {
+    name: "Craig",
+    image: "/hosts/craig.svg",
+    bio:
+      "Craig grew up as a third-generation kid in a a baptist church from the time he was born, surrounded by his extended family. " + 
+      "He went on missions trips, led worship in youth group and Sunday mornings, and even met his wife in the church he was raised in. " + 
+      "Now he's figuring out how to work through the religious wounds of his youth that caused him to walk away from his early beliefs.",
   },
 ] as const;
 
