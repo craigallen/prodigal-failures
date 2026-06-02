@@ -16,11 +16,11 @@ export const siteConfig = {
   name: "Prodigal Failures",
 
   /** One-line tagline shown under the name on the home page. */
-  tagline: "Unpacking the faith that raised us — one episode at a time",
+  tagline: "Unpacking the faith that raised us — one episode at a time.",
 
   /** Longer description used for SEO / metadata. */
   description:
-    "Prodigal Failures is an honest, funny podcast about growing up evangelical, deconstructing faith, and who we became after we left..",
+    "Prodigal Failures is an honest, funny podcast about growing up evangelical, deconstructing faith, and who we became after we left.",
 
   /**
    * The podcast RSS feed URL. Episodes (titles, descriptions, artwork, dates,
