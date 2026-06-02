@@ -1,5 +1,6 @@
+import { Star, Triangle } from "./Decorations";
+
 type FeedNoticeProps = {
-  /** When true, show the "feed unreachable" message; otherwise "no episodes yet". */
   error?: boolean;
 };
 
@@ -9,14 +10,16 @@ type FeedNoticeProps = {
  */
 export default function FeedNotice({ error = false }: FeedNoticeProps) {
   return (
-    <div className="rounded-xl border border-dashed border-stone-300 bg-white/50 px-6 py-12 text-center">
-      <p className="text-base font-medium text-stone-700">
-        {error ? "We couldn't load episodes right now." : "No episodes yet."}
+    <div className="panel relative overflow-hidden px-6 py-14 text-center">
+      <Star className="absolute -left-3 -top-3 h-14 w-14 text-yellow" />
+      <Triangle className="absolute -bottom-2 right-4 h-12 w-12 text-teal" />
+      <p className="display text-2xl uppercase text-ink">
+        {error ? "Signal lost!" : "Coming soon!"}
       </p>
-      <p className="mx-auto mt-2 max-w-md text-sm text-stone-500">
+      <p className="mx-auto mt-3 max-w-md text-sm font-medium text-ink/70">
         {error
-          ? "The podcast feed seems to be unreachable at the moment. Please check back again shortly."
-          : "We're just getting started — the first episode is on its way. Subscribe on your favorite platform to be the first to hear it."}
+          ? "We couldn't reach the podcast feed right now. Rewind and try again in a bit."
+          : "We're just getting started — episode one is on its way. Hit a platform below to subscribe and be first in line."}
       </p>
     </div>
   );

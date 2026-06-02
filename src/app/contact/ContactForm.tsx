@@ -41,20 +41,19 @@ export default function ContactForm() {
     }
   }
 
-  const inputClasses =
-    "w-full rounded-lg border border-stone-300 bg-white px-4 py-2.5 text-stone-900 outline-none transition-colors placeholder:text-stone-400 focus:border-accent focus:ring-1 focus:ring-accent";
+  const inputClasses = "field";
 
   if (status === "success") {
     return (
-      <div className="rounded-xl border border-stone-200 bg-white p-6">
-        <p className="text-base font-medium text-stone-900">Thanks — message sent!</p>
-        <p className="mt-1 text-sm text-stone-600">
+      <div className="panel p-6">
+        <p className="display text-xl uppercase text-teal">Message sent!</p>
+        <p className="mt-2 text-sm font-medium text-ink/75">
           We&apos;ll get back to you as soon as we can.
         </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-4 text-sm font-medium text-accent hover:underline"
+          className="mt-4 text-sm font-bold uppercase tracking-wide text-magenta hover:underline"
         >
           Send another message
         </button>
@@ -65,7 +64,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="name" className="text-sm font-medium text-stone-700">
+        <label htmlFor="name" className="text-sm font-bold uppercase tracking-wide text-ink">
           Name
         </label>
         <input
@@ -81,7 +80,7 @@ export default function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="email" className="text-sm font-medium text-stone-700">
+        <label htmlFor="email" className="text-sm font-bold uppercase tracking-wide text-ink">
           Email
         </label>
         <input
@@ -97,7 +96,7 @@ export default function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="message" className="text-sm font-medium text-stone-700">
+        <label htmlFor="message" className="text-sm font-bold uppercase tracking-wide text-ink">
           Message
         </label>
         <textarea
@@ -112,7 +111,10 @@ export default function ContactForm() {
       </div>
 
       {status === "error" && (
-        <p className="text-sm text-red-600" role="alert">
+        <p
+          className="rounded-lg border-[3px] border-ink bg-orange px-4 py-2 text-sm font-bold text-white"
+          role="alert"
+        >
           {errorMessage}
         </p>
       )}
@@ -120,9 +122,9 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex w-fit items-center rounded-full bg-accent px-6 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+        className="btn w-fit bg-magenta text-white"
       >
-        {status === "submitting" ? "Sending…" : "Send message"}
+        {status === "submitting" ? "Sending…" : "Send message →"}
       </button>
     </form>
   );

@@ -1,28 +1,136 @@
 @import "tailwindcss";
 
-/* ---------------------------------------------------------------------------
-   Minimal, warm, light theme. One accent color (amber) on a near-white /
-   ink palette. Keep it calm and uncluttered.
---------------------------------------------------------------------------- */
+/* ===========================================================================
+   PRODIGAL FAILURES — 90s Memphis / "Saved by the Bell" theme
+   Bright clashing colors, chunky type, thick black outlines + hard shadows,
+   geometric confetti. Loud but still legible and uncluttered.
+=========================================================================== */
 
-:root {
-  --background: #fafaf9; /* stone-50 */
-  --foreground: #1c1917; /* stone-900 */
-  --accent: #b45309; /* amber-700 */
-}
+@theme {
+  /* Core surface + ink */
+  --color-background: #fff7e8; /* warm cream */
+  --color-cream: #fff7e8;
+  --color-ink: #181527; /* near-black with a violet tint */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* The clashing 90s palette */
+  --color-magenta: #ff2e88;
+  --color-teal: #06c7b5;
+  --color-purple: #9b51e0;
+  --color-yellow: #ffc93c;
+  --color-orange: #ff6b35;
+  --color-blue: #15a0e8;
+
+  /* Fonts (wired up in layout.tsx) */
+  --font-display: var(--font-archivo-black);
+  --font-sans: var(--font-poppins);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: var(--color-cream);
+  color: var(--color-ink);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  /* Subtle dotted "confetti" texture, kept faint so content stays clean */
+  background-image: radial-gradient(var(--color-ink) 1.25px, transparent 1.25px);
+  background-size: 32px 32px;
+  background-position: -8px -8px;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+}
+
+/* ---- Reusable component classes ----------------------------------------- */
+
+@layer components {
+  /* Chunky display heading */
+  .display {
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.01em;
+    line-height: 0.95;
+  }
+
+  /* Card / panel with thick outline + hard offset shadow */
+  .panel {
+    border: 3px solid var(--color-ink);
+    border-radius: 1rem;
+    background: #ffffff;
+    box-shadow: 6px 6px 0 0 var(--color-ink);
+  }
+
+  /* Pressable button — bright fill, hard shadow that "presses" on hover */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 3px solid var(--color-ink);
+    border-radius: 9999px;
+    padding: 0.6rem 1.4rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    background: var(--color-yellow);
+    box-shadow: 4px 4px 0 0 var(--color-ink);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+  }
+  .btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 0 var(--color-ink);
+  }
+  .btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 0 var(--color-ink);
+  }
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 4px 4px 0 0 var(--color-ink);
+  }
+
+  /* Rounded outlined "sticker" pill (listen links, tags) */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    border: 3px solid var(--color-ink);
+    border-radius: 9999px;
+    padding: 0.4rem 1rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    background: #fff;
+    box-shadow: 3px 3px 0 0 var(--color-ink);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+  }
+  .pill:hover {
+    transform: translate(1.5px, 1.5px);
+    box-shadow: 1.5px 1.5px 0 0 var(--color-ink);
+  }
+
+  /* A small angled date/category sticker */
+  .tag {
+    display: inline-block;
+    border: 2.5px solid var(--color-ink);
+    border-radius: 0.4rem;
+    padding: 0.15rem 0.6rem;
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+
+  /* Form field */
+  .field {
+    width: 100%;
+    border: 3px solid var(--color-ink);
+    border-radius: 0.6rem;
+    background: #fff;
+    padding: 0.7rem 0.9rem;
+    font-weight: 500;
+    color: var(--color-ink);
+    box-shadow: 3px 3px 0 0 var(--color-ink);
+    outline: none;
+    transition: box-shadow 0.08s ease, transform 0.08s ease;
+  }
+  .field::placeholder {
+    color: #9b96a8;
+  }
+  .field:focus {
+    box-shadow: 3px 3px 0 0 var(--color-magenta);
+  }
 }

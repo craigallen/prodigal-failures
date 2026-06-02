@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getFeed, excerpt } from "@/lib/feed";
 import { siteConfig } from "@/config/site";
 import FeedNotice from "@/components/FeedNotice";
+import { ZigZag } from "@/components/Decorations";
 
 // Revalidate this page hourly, matching the feed cache (see src/lib/feed.ts).
 export const revalidate = 3600;
@@ -11,14 +12,19 @@ export const metadata: Metadata = {
   description: `Every episode of ${siteConfig.name}.`,
 };
 
+const accents = ["bg-magenta", "bg-teal", "bg-purple", "bg-yellow", "bg-orange", "bg-blue"];
+
 export default async function ArchivePage() {
   const { episodes, error } = await getFeed();
 
   return (
     <div className="flex flex-col gap-10">
-      <section className="flex flex-col gap-3">
-        <h1 className="text-4xl font-bold tracking-tight text-stone-900">Archive</h1>
-        <p className="max-w-2xl text-lg text-stone-600">
+      <section>
+        <h1 className="display text-5xl uppercase text-ink">
+          <span className="text-purple">The</span> archive
+        </h1>
+        <ZigZag className="mt-3 h-5 w-48 text-teal" />
+        <p className="mt-5 max-w-2xl text-lg font-medium text-ink/80">
           Every episode, newest first.
         </p>
       </section>
@@ -26,23 +32,23 @@ export default async function ArchivePage() {
       {episodes.length === 0 ? (
         <FeedNotice error={error} />
       ) : (
-        <ul className="flex flex-col divide-y divide-stone-200 border-y border-stone-200">
-          {episodes.map((episode) => (
+        <ul className="flex flex-col gap-5">
+          {episodes.map((episode, i) => (
             <li
               key={episode.id}
-              className="flex flex-col gap-2 py-6 sm:flex-row sm:items-start sm:justify-between sm:gap-8"
+              className="panel flex flex-col gap-3 p-6 sm:flex-row sm:items-start sm:justify-between sm:gap-8"
             >
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-2">
                 {episode.displayDate && (
-                  <time className="text-xs font-medium uppercase tracking-wide text-stone-400">
+                  <span className={`tag w-fit ${accents[i % accents.length]} text-ink`}>
                     {episode.displayDate}
-                  </time>
+                  </span>
                 )}
-                <h2 className="text-lg font-semibold leading-snug text-stone-900">
+                <h2 className="display text-xl leading-snug text-ink">
                   {episode.title}
                 </h2>
                 {episode.description && (
-                  <p className="max-w-2xl text-sm leading-relaxed text-stone-600">
+                  <p className="max-w-2xl text-sm font-medium leading-relaxed text-ink/70">
                     {excerpt(episode.description, 200)}
                   </p>
                 )}
@@ -52,7 +58,7 @@ export default async function ArchivePage() {
                   href={episode.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-1 inline-flex w-fit flex-shrink-0 items-center text-sm font-medium text-accent transition-colors hover:underline"
+                  className="btn mt-1 w-fit flex-shrink-0 bg-teal text-ink"
                 >
                   Listen →
                 </a>
